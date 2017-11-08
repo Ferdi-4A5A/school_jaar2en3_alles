@@ -1,0 +1,5 @@
+<body>
+    <noscript>
+        Geen JavaScript
+    </noscript>
+</body>

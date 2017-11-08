@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+        }
+        .guest-form {
+            margin: 0 auto;
+            width: 18%;
+            margin-top: 200px;
+        }
+        .guest-form input {
+            width: 100%;
+        }
+        #content {
+            margin-top: 30px;
+            margin-left: 41%;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="guest-form" method="post" action="">
+        KM:<br>
+        <input type="number" id="km" /><br>
+        Dag en tijd:<br>
+        <input type="datetime-local" id="datetime" /><br><br>
+        <input type="button" onclick="berekening()" value="Verzenden">
+    </form>
+
+    <div id="content"></div>
+
+<script>
+
+    function berekening() {
+
+        // km = min (ervan uitgaande dat de gemiddelde snelheid 60 km/u is)
+        var km = document.getElementById('km');
+        var datetime = document.getElementById('datetime');
+        var output = document.getElementById('content');
+
+        var dateYourneyStart = new Date(datetime.value);
+        var dateYourneyStartMilliseconds = dateYourneyStart.getTime();
+
+        var kmSeconds      = km.value * 60;
+        var kmMilliseconds = kmSeconds * 1000;
+
+        var dateYourneyEnd = new Date(dateYourneyStartMilliseconds + kmMilliseconds);
+
+        var startMonth   = dateYourneyStart.getMonth() + 1;
+        var startDay    = dateYourneyStart.getDay();
+        var startHour   = dateYourneyStart.getHours();
+
+        if (startMonth > 0 && startMonth < 10) {
+            startMonth   = "0" + Number(dateYourneyStart.getMonth() + 1);
+        } else {
+            startMonth   = dateYourneyStart.getMonth() + 1;
+        }
+
+        var startDateTime = dateYourneyStart.getFullYear() + "-" + startMonth + "-" + ('0' + dateYourneyStart.getDate()).slice(-2) + "  " + ('0' + startHour).slice(-2) + ":" + ('0' + dateYourneyStart.getMinutes()).slice(-2);
+        var endDateTime = dateYourneyEnd.getFullYear() + "-" + ('0' + (dateYourneyEnd.getMonth() + 1)).slice(-2) + "-" + ('0' + dateYourneyEnd.getDate()).slice(-2) + "  " + ('0' + dateYourneyEnd.getHours()).slice(-2) + ":" + ('0' + dateYourneyEnd.getMinutes()).slice(-2);
+
+        if (startHour >= 8 && startHour < 18) {
+            var priceMinutes = km.value * 0.25;
+            var price = Number(km.value) + priceMinutes;
+        } else if(startHour >= 18 || startHour < 8) {
+            var priceMinutes = km.value * 0.45;
+            var price = Number(km.value) + priceMinutes;
+        }
+
+        output.innerHTML = "Aantal km: " + km.value + '<br>';
+        output.innerHTML = output.innerHTML + "Aantal minuten: " + km.value + '<br>';
+        output.innerHTML = output.innerHTML + "Begintijd: " + startDateTime + '<br>';
+        output.innerHTML = output.innerHTML + "Eindtijd: " + endDateTime + '<br>';
+        output.innerHTML = output.innerHTML + "Ritprijs: " + "&euro;"  + price.toFixed(2) + '<br>';
+
+        // Weekendtoeslag
+        if (startDay == 1 && startHour >= 7 || startDay >= 2 && startDay <= 4 || startDay == 5 && startHour < 22) {
+            var extraChargePriceFixed = '0';
+            var priceTotal = '0';
+        } else {
+            var extraCharge = price * 1.15;
+            var extraChargePrice = extraCharge - price;
+            var extraChargePriceFixed = extraChargePrice.toFixed(2);
+            var priceTotal = price + Number(extraChargePrice);
+            output.innerHTML = output.innerHTML + "Weekendtoeslag (15% / vrij 22.00 - ma 07.00): " + "&euro;" + extraChargePriceFixed + '<br>';
+            output.innerHTML = output.innerHTML + "Totaal: " + "&euro;" + priceTotal.toFixed(2);
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
+
+<!--Ritprijs klopt niet (0,25 / 0,45) // begin/eind tijd word niet geupdate?-->
+
+<!--TOTAAL = -->
+
+<!--PRIJS = km + date-->
+
+<!--gereden km: €1-->
+<!--gereden min (8.00/18.00): €0,25-->
+<!--gereden min (18.00/8.00): €0,45-->
+
+<!--vrijdag(22.00) / maandag(7.00): +15%-->
+

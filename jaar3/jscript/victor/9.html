@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="https://www.mt.nl/wp-content/uploads/res/grote-boom.jpg" alt="Smiley face">
+<img src="https://www.mt.nl/wp-content/uploads/res/grote-boom.jpg" alt="Smiley face">
+<a href="https://www.mt.nl/wp-content/uploads/res/grote-boom.jpg">test</a>
+<script>
+
+//            Aan de hand van de gegeven code kun je de volgende vragen beantwoorden:
+//            Hoe moet de (hoofd)functie gaan heten?
+//            -->   select(attr)
+//            Welke parameters moet deze functie hebben?
+//            -->   attribuut naam (attr)
+//            Wat geeft deze functie als returnwaarde?
+//            -->   De functie setLinksAttr
+//            Beantwoord bovenstaande vragen ook voor de functie die wordt geretourneerd (en dus in de variabelen setLinksAttr en setImgAttr zit).
+//            -->   setLinksAttr(propery, value), returnt een loop met de gewijzigde attribuut waardes
+
+    var setLinksAttr = select('a');
+    setLinksAttr('target', '_blank');
+
+    var setImgAttr = select('img');
+    setImgAttr('width', '200');
+
+    function select(attr) {
+        function setLinksAttr(property, value) {
+            for (i=0; i<document.querySelectorAll(attr).length; i++) {
+                document.querySelectorAll(attr)[i].setAttribute(property, value)
+            }
+        }
+        return setLinksAttr;
+    }
+
+    // Zelf gedaan
+//    function setAttr(AttrType, AttrProperty, AttrValue) {
+//        selectAll = document.querySelectorAll(AttrType);
+//        for (i=0; i<selectAll.length; i++) {
+//            document.querySelectorAll(AttrType)[i].setAttribute(AttrProperty, AttrValue)
+//        }
+//    }
+
+    // Ook zelf gedaan
+//    select('img', 'width', '200');
+//    select('a', 'target', '_blank');
+//
+//    function select(AttrType, AttrProperty, AttrValue) {
+//        var setImgAttr = document.querySelectorAll(AttrType);
+//        var editAttr;
+//        function setAttr() {
+//            for (i=0; i<setImgAttr.length; i++) {
+//                console.log(setImgAttr[i]);
+//                editAttr += setImgAttr[i].setAttribute(AttrProperty, AttrValue);
+//            }
+//            return editAttr;
+//        }
+//        return setAttr();
+//    }
+
+</script>
+
+</body>
+</html>

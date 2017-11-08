@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <style>
+        .container {
+            margin: 0 auto;
+        }
+        #counter {
+            margin: 0 auto;
+            margin-top: 100px;
+            width: 10%;
+            font-size: 88px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div id="counter"></div>
+
+        <script>
+
+            var counter = document.getElementById('counter');
+            var i = 0;
+
+            var bla = setInterval(counterBla, 1);
+
+            function counterBla() {
+                i++;
+                counter.innerHTML = i;
+                if (i === 100) {
+                    document.getElementById('counter').style.fontSize = 350 + 'px';
+                    clearInterval(bla);
+                }
+            }
+
+        </script>
+
+    </div>
+</body>
+</html>

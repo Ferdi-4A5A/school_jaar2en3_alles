@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+    <div>
+        <label>Number 1:</label>
+        <input type="number" name="firstNumber">
+    </div>
+    <div>
+        <label>Number 2:</label>
+        <input type="number" name="secondNumber">
+    </div>
+    <div>
+        <button type="button" id="multiply">Multiply</button>
+    </div>
+    <div id="result"></div>
+</form>
+<script>
+    function multiplyModule() {
+        document.querySelector("#multiply").addEventListener("click", function(){
+            var firstNumber = document.querySelector('input[name="firstNumber"]');
+            var secondNumber = document.querySelector('input[name="secondNumber"]');
+            document.querySelector('#result').innerHTML = (firstNumber.value * secondNumber.value);
+        });
+    }
+    multiplyModule();
+</script>
+
+</body>
+</html>

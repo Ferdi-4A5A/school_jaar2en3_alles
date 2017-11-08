@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="hello" style="width:33%;"><button type="submit">Hello world</button></div>
+<div id="lorem" style="width:33%;"><button type="submit">Lorem ipsum</button></div>
+<div id="image" style="width:33%;"><button type="submit">Image</button></div>
+
+<div id="content"></div>
+
+<script>
+
+    // je moet 3 aparte pagina's maken en hele pagina's ophalen
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", ajaxLoad);
+    xhr.addEventListener("error", ajaxError);
+
+    // Callbacks:
+    function ajaxLoad(event) {
+        if (this.status === 200) {
+            console.log(this.responseText);   // this === xhr
+        } else {
+            console.log("unsuccessful request");
+        }
+    }
+
+    function ajaxError(event) {
+        console.log('error');
+    }
+
+    for(var i = 0; i < document.getElementsByTagName('button').length; i++) {
+        document.getElementsByTagName('button')[i].onclick = function () {
+            if (this.parentNode.id == 'hello') {
+                xhr.open("GET", "10-ajax-extra-1.txt");
+                xhr.send();
+                xhr.addEventListener("load", testing(this.parentNode.id));
+            } else if (this.parentNode.id == 'lorem') {
+                xhr.open("GET", "10-ajax-extra-2.txt");
+                xhr.send();
+                xhr.addEventListener("load", loremIpsum);
+            } else if (this.parentNode.id == 'image') {
+                xhr.open("GET", "10-ajax-extra-3.txt");
+                xhr.send();
+                xhr.addEventListener("load", image);
+            }
+        }
+    }
+console.log(document.getElementById("hello"));
+console.log(document.getElementsByTagName('button')[1].parentNode);
+
+    // hij pakt xhr.responseText niet.. rest werktie wel.. vage shit
+    function testing(divID) {
+        console.log(divID);
+        if (divID == 'hello') {
+//            document.getElementById("hello").innerHTML = xhr.responseText;
+//            alert(xhr.responseText);
+            alert(xhr.responseText);
+//        for (var i = 0; i < document.getElementsByTagName('button').length; i++) {
+//        }
+        }
+    }
+
+
+    // het id hier meegeven
+    function helloWorld() {
+        document.getElementById("hello").innerHTML = xhr.responseText;
+        alert(xhr.responseText);
+    }
+
+    function loremIpsum() {
+        document.getElementById("lorem").innerHTML = xhr.responseText;
+    }
+
+    function image() {
+        document.getElementById("image").innerHTML = xhr.responseText;
+    }
+
+</script>
+
+</body>
+</html>

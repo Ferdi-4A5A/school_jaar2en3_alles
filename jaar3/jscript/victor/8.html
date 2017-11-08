@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function getFamilyName(familyName) {
+        function getFirstName(firstName) {
+            return firstName + familyName;
+        }
+        return getFirstName;
+    }
+
+var showRockeFeller = getFamilyName(" RockeFeller");
+var showJackson = getFamilyName(" RockeFeller");
+console.log(showJackson("Michael"));
+
+
+</script>
+
+</body>
+</html>

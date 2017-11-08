@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul data-ul="data-show-oddeven">
+    <li>A</li>
+    <li>B</li>
+    <li>C</li>
+    <li>D</li>
+    <li>E</li>
+    <li>F</li>
+    <li>G</li>
+</ul>
+
+<script>
+
+    // Show Odd Even
+    listItems = document.querySelectorAll("[data-ul='data-show-oddeven'] li");
+    listItems.forEach(myFunction);
+
+    function myFunction(value, index, arr) {
+        if (index % 2 == 0) {
+            listItems[index].title = 'odd';
+        }
+        else if (index % 2 == 1) {
+            listItems[index].title = 'even';
+        }
+    }
+
+    // Add Up Next
+    var numbers = [2, 6, 11, 5, 9, 8, 3, 46, 4];
+    numbers.forEach(myFunctionn);
+
+    function myFunctionn(value, index, arr) {
+        var first = index * 2;
+        var second = first + 1;
+
+        if (!isNaN(arr[first] + arr[second])) {
+            console.log("Item " + index + " = " + (arr[first] + arr[second]));
+        } else if (arr.length % 2 == 1 && index === Math.ceil(arr.length / 2)) {
+            console.log("Item " + (index-1) + " = " + arr[arr.length-1]);
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    Breedte: <input id="breedte" type="text" name="breedte" oninput="myFunction()" /> pixels<br>
+    Hoogte: <input id="hoogte" type="text" name="hoogte" oninput="myFunction()" /> pixels<br>
+    <button type="button" onclick="reset()">Reset</button>
+
+    <select id="kleur" onchange="myFunction()">
+        <option value="red" onchange="myFunction()">Rood</option>
+        <option value="green" onchange="myFunction()">Groen</option>
+        <option value="blue" onchange="myFunction()">Blauw</option>
+        <option value="yellow" onchange="myFunction()">Geel</option>
+    </select>
+
+    <div id="vierkant" style="width: 100px; height: 100px; background-color: red;"></div>
+
+<script>
+
+    function myFunction() {
+        document.getElementById('vierkant').style.width = document.getElementById("breedte").value + "px";
+        document.getElementById('vierkant').style.height = document.getElementById("hoogte").value + "px";
+        document.getElementById("vierkant").style.backgroundColor = document.getElementById("kleur").value;
+    }
+
+    function reset() {
+        document.getElementById('vierkant').style.width = 100 + "px";
+        document.getElementById('vierkant').style.height = 100 + "px";
+        document.getElementById("vierkant").style.backgroundColor = "red";
+    }
+
+</script>
+</body>
+</html>

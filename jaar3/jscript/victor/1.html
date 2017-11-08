@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function useBar(callback) {
+        callback(1);
+        callback(2);
+        callback(3);
+    }
+
+    function bar(sentence) {
+        console.log(sentence);
+    }
+
+    useBar(bar);
+
+</script>
+
+</body>
+</html>

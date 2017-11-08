@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI / Background color</title>
+</head>
+
+<body bgcolor="<?php echo ($_GET['color']) ? $_GET['color'] : $_COOKIE['4-background-color']; ?>">
+<?php include '4.php'; ?>
+<form method="post" action="">
+    Lengte(m): <input type="text" name="length"><br/>
+    Gewicht(kg): <input type="text" name="weight"><br/>
+    <button type="submit" name="btn-bmi">Submit</button>
+</form>
+
+<form method="get" action="">
+    <select name="color">
+        <option value="yellow">Geel</option>
+        <option value="green">Groen</option>
+        <option value="red">Rood</option>
+        <option value="blue">Blauw</option>
+    </select>
+    <button type="submit">Pick color</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: url("img/9.jpg");
+    color: #e5e5e5;
+    margin: 0;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+    font-size: 1em;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid black;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+.container {width: 80%; margin-left: 10%;}
+
+.col-4-banner {
+    width: 33.33%;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1em;
+    height: 84px;
+    line-height: 54px;
+}
+
+.col-3-mywork {
+    width: 25%;
+    margin-left: 16.66%;
+    margin-bottom: 50px;
+    background-color: rgb(0, 0, 255);
+    background-color: rgba(0, 0, 20, 0.3);
+    border-radius: 8px;
+}
+.col-3-mywork:hover {
+    background-color: rgba(0, 0, 20, 0.5);
+    cursor: pointer;
+}
+
+.content-contact-googlemap {
+    width: 100%;
+    margin-top: 120px;
+}
+.content-contact {
+    font-family: 'Macondo', cursive;
+    font-size: 1.4em;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 80px;
+}
+
+.skills-margin-top {
+    margin-top: 20px;
+}
+
+
+
+.col-6 {
+    height: 13vh;
+}
+.col-content {
+    margin-top: 50px;
+    width: 100%;
+}
+.content-text {
+    width: 70%;
+    margin-left: 15%;
+}
+
+
+nav ul li{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    padding-right: 55px;
+    cursor: pointer;
+    color: white;
+    list-style-type: none;
+}
+
+nav ul li :hover {
+    text-decoration: none;
+    color: #8584CC;
+}
+
+.skills-image {
+    max-width: 60%;
+}
+.mywork-image {
+    max-width: 100%;
+}
+.col-project-offset {
+    width: 12.5%;
+}
+
+/*responsive maken door hem juist eerst fullscreen te laten worden en dan pas dingen aanpassen *doh**/
+
+/* Small Devices, Mobile */
+@media only screen and (min-width : 480px) {
+    nav ul li {
+        display: block;
+    }
+    .col-3-mywork {
+        width: 75%;
+        margin-left: 12.5%;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    nav ul li {
+        padding-right: 10px;
+        display: inline-block;
+    }
+    .col-3-mywork {
+        width: 40%;
+        margin-left: 6.66%;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    nav ul li {
+        padding-right: 34px;
+    }
+    .col-3-mywork {
+        width: 33%;
+        margin-left: 11.33%;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    nav ul li {
+        padding-right: 55px;
+    }
+    .col-3-mywork {
+        width: 25%;
+        margin-left: 16.66%;
+    }
+}

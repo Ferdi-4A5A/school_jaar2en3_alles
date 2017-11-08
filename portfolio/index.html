@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="main.js"></script>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Macondo|Roboto" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="background-image"></div>
+
+    <div class="row">
+
+        <div class="col-4-banner">
+
+            PORTFOLIO VAN FERDI VAN LEEUWEN
+
+        </div>
+
+        <div class="col-8">
+
+            <nav class="nav-nav">
+
+                <ul>
+                    <li><a onclick="loadPage('home.html', callBack)">Home</a></li>
+                    <li><a onclick="loadPage('about.html', callBack)">About</a></li>
+                    <li><a onclick="loadPage('skills.html', callBack)">Skills</a></li>
+                    <li><a onclick="loadPage('mywork.html', callBack)">My Work</a></li>
+                    <li><a onclick="loadPage('contact.html', callBack)">Contact</a></li>
+                </ul>
+
+            </nav>
+
+        </div>
+
+            <div class="col-content" id="col-content">
+
+            </div>
+
+    </div>
+
+</div>
+
+<script>
+    loadPage('home.html', callBack);
+    function loadPage(href, callback) {
+//        document.getElementById('spinner').style.display = 'block';
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+//                document.getElementById('spinner').style.display = 'none';
+                callback(this);
+            }
+        };
+        xhr.open("GET", "http://school.dev/portfolio/"+href, true);
+        xhr.send();
+    }
+
+    function callBack(result) {
+        console.log(result);
+        return document.getElementById('col-content').innerHTML = result.response;
+    }
+</script>
+
+</body>
+</html>

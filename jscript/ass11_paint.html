@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Paint</title>
+
+    <style>
+        body, html {
+            height: 100%;
+        }
+        body {
+            margin: 0 auto;
+        }
+        .button-color {
+            position: relative;
+            z-index: 1;
+        }
+        .content {
+            width: 100%;
+            height:90%;
+        }
+        .circle {
+            margin-left: -10px;
+            margin-top: -10px;
+            position: absolute;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .default {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+        }
+        .black {
+            background-color: black;
+        }
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .green {
+            background-color: green;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .grey {
+            background-color: grey;
+        }
+    </style>
+</head>
+
+<body onmousemove="moveCircle(event)" onmousedown="paintActivate()" onmouseup="paintDeactivate()">
+
+    <button id="btn-black" class="button-color">Black</button>
+    <button id="btn-red" class="button-color">Red</button>
+    <button id="btn-blue" class="button-color">Blue</button>
+    <button id="btn-green" class="button-color">Green</button>
+    <button id="btn-yellow" class="button-color">Yellow</button>
+    <button id="btn-grey" class="button-color">Grey</button>
+
+    <div id="content" class="content"></div>
+    <div id="circle" class="circle"></div>
+
+    <script>
+
+        var dCircle = document.getElementById('circle');
+        var activePaint = 0;
+        var activeClassname = "black";
+
+        function moveCircle(event) {
+
+                var x = event.clientX;     // Get the horizontal coordinate
+                var y = event.clientY;     // Get the vertical coordinate
+
+                dCircle.style.left = x + "px";
+                dCircle.style.top = y + "px";
+
+            if (activePaint == 1) {
+
+                var div = document.createElement("div");
+
+                div.className = "default " + activeClassname;
+                div.style.left = x + "px";
+                div.style.top = y + "px";
+
+                document.getElementById("content").appendChild(div);
+
+            }
+        }
+
+        function paintDeactivate() {
+            activePaint = 0;
+        }
+        function paintActivate() {
+            activePaint = 1;
+        }
+
+        document.getElementById('btn-black').addEventListener('click', function() {
+            activeClassname = "black";
+            dCircle.style.backgroundColor = "black";
+        });
+        document.getElementById('btn-red').addEventListener('click', function() {
+            activeClassname = "red";
+            dCircle.style.backgroundColor = "red";
+        });
+        document.getElementById('btn-blue').addEventListener('click', function() {
+            activeClassname = "blue";
+            dCircle.style.backgroundColor = "blue";
+        });
+        document.getElementById('btn-green').addEventListener('click', function() {
+            activeClassname = "green";
+            dCircle.style.backgroundColor = "green";
+        });
+        document.getElementById('btn-yellow').addEventListener('click', function() {
+            activeClassname = "yellow";
+            dCircle.style.backgroundColor = "yellow";
+        });
+        document.getElementById('btn-grey').addEventListener('click', function() {
+            activeClassname = "grey";
+            dCircle.style.backgroundColor = "grey";
+        });
+
+    </script>
+
+</body>
+</html>

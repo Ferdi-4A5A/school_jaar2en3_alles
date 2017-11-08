@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="content"></div>
+
+    <script>
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("load", ajaxLoad);
+        xhr.addEventListener("error", ajaxError);
+        xhr.addEventListener("load", getJSON);
+
+        function ajaxLoad(event) {
+            console.log("Hallo");
+            if (this.status === 200) {
+                console.log(this.responseText);   // this === xhr
+            } else {
+                console.log("unsuccessful request");
+            }
+        }
+
+        function ajaxError(event) {
+            console.log('error');
+        }
+
+        function getJSON() {
+            test = JSON.parse(xhr.responseText);
+            blegh = "<table border='1'><tr><th>Name</th><th>Age</th></tr>";
+
+            for (x in test.employees) {
+                console.log(test.employees[x].name);
+                blegh += "<tr><td>" + test.employees[x].name + "</td><td>" + test.employees[x].age + "</td></tr>";
+            }
+            blegh += "</table>";
+            document.getElementById("content").innerHTML = blegh;
+        }
+        xhr.open("GET", "11-students.json");
+        xhr.send();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form method="get" action="">
+        ID: <input type="number" name="id" id="countryId" /><br/><br/>
+        <button type="button" id="btn-submit">Show result</button><br/><br/><br/>
+        <textarea cols="50" rows="20" id="textareaJson"></textarea>
+    </form>
+
+    <div id="content" style="margin-top: 20px;"></div>
+
+<script>
+
+    function getResponse(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, false);
+        xhr.send();
+
+        return xhr.responseText;
+    }
+
+    document.getElementById('btn-submit').addEventListener('click', function() {
+
+        var countryId = document.getElementById("countryId").value;
+        var responseJSONAll = getResponse("webservices/api-countries.php?output=json");
+        var responseJSON = getResponse("webservices/api-countries.php?output=json&id=" + countryId);
+        var jsonObject = JSON.parse(responseJSON);
+        var jsonObjectAll = JSON.parse(responseJSONAll);
+
+        document.getElementById('textareaJson').innerHTML = responseJSON;
+        document.getElementById('content').innerHTML = "First country name: " + jsonObjectAll.countries[0].name + "<br/>" + "<br/>";
+
+        for (i = 0; i< jsonObject.countries.length; i++) {
+            document.getElementById('content').innerHTML += jsonObject.countries[i].name + "<br/>";
+        }
+
+        // Table
+        contentID = "";
+        contentName = "";
+
+        for (i = 0; i< jsonObject.countries.length; i++) {
+            contentID += + jsonObject.countries[i].id + "|";
+            contentName += jsonObject.countries[i].name + "|";
+        }
+
+        contentID = contentID.split("|");
+        contentName = contentName.split("|");
+
+        var mytable = "<br/>"
+
+        mytable += "<table border='1'>";
+            mytable += "<tr>";
+                mytable += "<th>" + "id" + "</th>";
+                mytable += "<th>" + "name" + "</th>";
+            mytable += "</tr>";
+
+            for (i = 0; i< jsonObject.countries.length; i++) {
+                mytable += "<tr>";
+                    mytable += "<td>" + contentID[i] + "</td>";
+                    mytable += "<td>" + contentName[i] + "</td>";
+                mytable += "</tr>";
+            }
+
+        mytable += "</table>";
+
+        document.getElementById("content").innerHTML += mytable;
+    });
+
+</script>
+
+</body>
+</html>

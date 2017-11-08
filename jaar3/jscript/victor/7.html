@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    getallen = [[9,21,14,7],[11,5,27,15],[29,17,6,24]];
+//    getallen = [[9,21,14,7,1,43,2],[11,5,27,15,23,45,7],[29,8,6,24,89,65,43],[12,8,54,43,12,34,56],[34,54,65,76,43,45,89],[34,19,12,11,87,34,43]];
+
+    document.write("Rij totaal: " + calculateRow(2) + "<br/>");
+    document.write("Alles totaal: " + calculateArray(getallen));
+
+    console.log(calculateRow(2));
+    console.log(calculateArray(getallen));
+    console.log(rowToColumn(getallen));
+
+    function calculateRow(row) {
+        function add(a, b) {
+            return a + b;
+        }
+        return getallen[row].reduce(add, 0);
+    }
+
+    function calculateArray(array) {
+        var resultArray = [];
+
+        for (i = 0; i < array.length; i++) {
+            function add(a, b) {
+                return a + b;
+            }
+            // Telt alles in een individuele array bij elkaar op
+            resultArray.push(array[i].reduce(add, 0));
+            // Maakt van alle array resultaten één array en tel alles in die array bij elkaar op
+            var result = resultArray.reduce(add, 0);
+        }
+        return result;
+    }
+
+    function rowToColumn(array) {
+        var arrayTemp = [];
+        var arrayConvert = [];
+
+        var i = 0;
+        var x = 0;
+
+        // Convert rows to columns and make array
+        while (x < array[0].length) {
+            for (i=0; i<array.length; i++) {
+                arrayTemp.push(array[i][x]);
+            }
+            x++;
+        }
+
+        //  Convert array to multidimensional array
+        for (i=0; i<array[0].length; i++) {
+            arrayConvert[i] = arrayTemp.slice(i * array.length, (i +1) * array.length);
+        }
+        return arrayConvert;
+    }
+
+</script>
+
+</body>
+</html>
